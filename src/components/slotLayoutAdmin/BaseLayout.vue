@@ -57,7 +57,7 @@
                         <el-avatar
                                 size="medium"
                                 shape="circle"
-                                src="https://saoexpress.vn/wp-content/uploads/2019/07/hot-girl-nguyen-thanh-thuy-Saoexpress-1.jpg"
+                                src="https://bcp.cdnchinhphu.vn/334894974524682240/2022/4/29/son-tung-mtp-08110778-1651217357607701319631.jpg"
                         />
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item>Thông tin tài khoản</el-dropdown-item>

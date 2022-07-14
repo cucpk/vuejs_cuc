@@ -5,6 +5,8 @@
     <!-- <LamBai2_1/> -->
     <!-- <LamBai2_2/> -->
     <!-- <toDoApp/> -->
+    <slotLayoutAdmin/>
+    <!-- <slotLayoutTinTuc/> -->
     <CRUD/>
   </div>
 </template>
@@ -14,12 +16,16 @@
 // import LamBai2_1 from './components/LamBai2_1.vue'
 // import LamBai2_2 from './components/LamBai2_2.vue'
 // import toDoApp from './components/toDoApp/toDoComponent.vue'
-import CRUD from './components/CRUD/exerciseBai4.vue'
+// import CRUD from './components/CRUD/exerciseBai4.vue'
+import slotLayoutAdmin from './components/slotLayoutAdmin/BaseLayout.vue'
+// import slotLayoutTinTuc from './components/slotLayoutTinTuc/BaseLayout.vue'
 export default {
   name: 'App',
   components: {
     // toDoApp,
-    CRUD,
+    // CRUD,
+    slotLayoutAdmin,
+    // slotLayoutTinTuc,
     // HexlloWorld
     // LamBai2_1,
     // LamBai2_2
