@@ -54,8 +54,8 @@ const routes = [
    
   },
   {
-    path: '/forgot-password',
-    name: 'forgot-password',
+    path: '/ForgotPass',
+    name: 'ForgotPass',
     component: () => import('../views/QuenMatKhau.vue'),
    
   },

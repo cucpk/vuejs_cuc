@@ -12,7 +12,8 @@
 
 <script>
     export default{
-        name:'FormBai5',
+           
+        name:'QuenMatKhau',
         data (){
             return{
                 inputEmail:'',
