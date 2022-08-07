@@ -6,6 +6,16 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/learn-vuex',
+    name: 'LearnVuex',
+    component: () => import('../components/LearnVuex.vue')
+  },
+  {
+    path: '/learn-vuex2',
+    name: 'LearnVuex2',
+    component: () => import('../components/LearnVuex.vue')
+  },
+  {
     path: '/',
     name: 'home',
     component: () => import('../views/BaseLayout.vue'),
@@ -86,10 +96,15 @@ const routes = [
       path: 'post',
       name: 'userPost',
       component: () => import('../views/PostView.vue')
-     },
+     }
+    //  {
+    //   path: 'learnvuex2',
+    //   name: 'LearnVuex2',
+    //   component: () => import('../components/LearnVuex.vue')
+    //  },
 
     ]
-  },
+  }
   
 ]
 
