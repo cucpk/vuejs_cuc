@@ -45,7 +45,7 @@
 <script>
 import { mapState,mapMutations } from 'vuex'
     export default {
-        name: "BaiTap_2",
+        name: "Bai7-1Phan1",
         computed: {
             ...mapState([
                 'carts', 'totalMoney'
