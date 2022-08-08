@@ -1,69 +1,120 @@
 <template>
-<div class="container">
-        <div class="productList">
-            <table>
-                <tr>
-                    <th>STT</th>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Trạng thái</th>
-                    <th>Hành động</th>
-                </tr>
-                <tr v-if="products.length === 0">
-                    <td colspan="6" class="textCenter">Không có dữ liệu</td>
-                </tr>
-                <tr v-for="(product, index) in products" :key="index">
-                    <td class="textCenter">{{index + 1}}</td>
-                    <td>
-                        <div class="productNameWrap">
-                            <img v-if="product.image" :src="product.image" alt="">
-                            <img v-else src="../assets/defaultImg.png" alt="">
-                            <div class="textMain">{{product.name}}</div>
-                        </div>
-                    </td>
-                    <td>{{formatPrice(product.price)}}</td>
-                    <td class="textCenter">{{product.quantity}}</td>
-                    <td class="textCenter">
-                        <span v-if="product.quantity > 0" class="textGreen">Còn hàng</span>
-                        <span v-else class="textRed">Hết hàng</span>
-                    </td>
-                    <td>
-                        <button class="addToCartButton" @click="addToCart(product)">Thêm vào giỏ</button>
-                    </td>
-                </tr>
-            </table>
+    <div class="cart">
+            <h4>Giỏ hàng</h4>
+            <div class="cart-item">
+                <table>
+                    <tr v-for="(cart,index) in carts" :key="index">
+                        <td>
+                            <img :src="cart.image" alt="" v-if="cart.image !== ''">
+                            <img src="" alt="" v-else>
+                        </td>
+                        <td>
+                            <div style="font-weight: bold;">{{ cart.name }}</div>
+                            <span>
+                                {{
+                                    new Intl.NumberFormat('de-DE', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                        minimumFractionDigits: 0
+                                    }).format(cart.price)
+                                }}
+                            </span>
+                        </td>
+                        <td>
+                            <input type="number" @change="updateTotalMoney(index)" v-model="cart.quantityCart">
+                        </td>
+                        <td>
+                            <button @click="destroyItem(index)">Xóa</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="totalMoney">
+                <b>
+                    Tổng tiền : {{
+                        new Intl.NumberFormat('de-DE', {
+                            style: 'currency',
+                            currency: 'VND',
+                            minimumFractionDigits: 0
+                        }).format(totalMoney)
+                    }}
+                </b>
+            </div>
         </div>
-        <!-- <div class="cartWrap">
-            <div class="title">Giỏ hàng</div>
-            <div class="cartEmpty" v-if="cartProducts.length === 0">
-                Không có sản phẩm nào được thêm vào giỏ
-            </div>
-            <div class="cartProductWrap" v-for="(product, index) in cartProducts" :key="product.id">
-                <div class="cartProductNameWrap">
-                    <img v-if="product.image" :src="product.image" alt="">
-                    <img v-else src="../assets/defaultImg.png" alt="">
-                    <div>
-                        <strong>{{formatProductName(product.name)}}</strong>
-                        <div>{{formatPrice(product.price)}}</div>
-                    </div>
-                </div>
-                <div class="actions">
-                    <input
-                        class="quantityChangeInput"
-                        type="number"
-                        v-model="cartProducts[index].quantity"
-                    >
-                    <button class="removeFromCartButton" @click="removeFromCart(product, index)">Xoá</button>
-                </div>
-            </div>
-            <div class="cartTotal">
-                Tổng tiền: {{total}}
-            </div>
-        </div> -->
-    </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
+    export default {
+        name: "BaiTap_2",
+        computed: {
+            ...mapState([
+                'carts', 'totalMoney'
+            ])
+        },
+        methods:{
+             ...mapMutations([
+                'destroy',
+                'updateMoney'
+            ]),
+            destroyItem(value){
+                this.destroy(value);
+            },
+            updateTotalMoney(value){
+                this.updateMoney(value);
+            }
+        }   
+    }
 </script>
-<style>
+<style lang="scss" scoped>
+    .cart {
+        border: 1px solid black;
+        height: 400px !important;
+        width: 590px;
+        text-align: left;
+        margin-left: 20px;
+        padding: 0 20px;
+        h4 {
+            padding-left: 4px;
+            margin-left: 8px;
+        }
+        .cart-item {
+            height: 600px;
+            table {
+                padding-left: 5px;
+                width: 100%;
+                border: none;
+                tr {
+                    td {
+                        border: none;
+                        border-bottom: 1px dotted gray;
+                        padding: 10px 0px;
+                        p {
+                            margin: 0px;
+                        }
+                        img {
+                            width: 30px;
+                        }
+                        button {
+                            background-color: red;
+                            color: white;
+                            border: none;
+                            padding: 6px;
+                            border-radius: 3px;
+                        }
+                        button:hover {
+                            background-color: #b42e56;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .totalMoney {
+            text-align: right;
+            margin: 15px;
+            b {
+                color: red;
+            }
+        }
+    }
 </style>

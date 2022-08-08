@@ -11,6 +11,16 @@ const routes = [
     component: () => import('../components/LearnVuex.vue')
   },
   {
+    path: '/Bai7-1',
+    name: 'Bai7-1Phan1',
+    component: () => import('../components/Bai7-1Phan1.vue')
+  },
+  {
+    path: '/Bai7-2',
+    name: 'Bai7-2Phan',
+    component: () => import('../components/Bai7-1Phan2.vue')
+  },
+  {
     path: '/learn-vuex2',
     name: 'LearnVuex2',
     component: () => import('../components/LearnVuex.vue')
