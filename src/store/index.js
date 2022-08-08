@@ -5,39 +5,39 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    carts: [
+    products: [
       {
         id: 1,
         name: 'iPhone 12 Pro Max Chính Hãng',
-        image: 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2020-10-13_22-12-24.jpg_1_2.png',
+        image: 'https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$',
         price: 32990000,
         quantity: 566,
       },
       {
         id: 2,
         name: 'iPhone 12 Chính Hãng (VN/A)',
-        image: '',
+        image: 'https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$',
         price: 21790000,
         quantity: 123,
       },
       {
         id: 3,
         name: 'iPhone 11 Chính hãng',
-        image: 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0004_layer_5.jpg',
+        image: 'https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$',
         price: 16690000,
         quantity: 0,
       },
       {
         id: 4,
         name: 'Apple iPhone XR 64GB Chính hãng(VN/A)',
-        image: 'https://cdn.cellphones.com.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-xr_5_.jpg',
+        image: 'https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$',
         price: 12190000,
         quantity: 1023,
       },
       {
         id: 5,
         name: 'iPhone 11 Pro Max Chính hãng(VN/A)',
-        image: '',
+        image: 'https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$',
         price: 26500000,
         quantity: 6,
       }

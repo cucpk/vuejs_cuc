@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/Bai7-1',
     name: 'Bai7-1Phan1',
-    component: () => import('../components/Bai7-1Phan1.vue')
+    component: () => import('../components/bai7.1/CartItem.vue')
   },
   {
     path: '/Bai7-2',
     name: 'Bai7-2Phan',
-    component: () => import('../components/Bai7-1Phan2.vue')
+    component: () => import('../components/bai7.1/listCart.vue')
   },
   {
     path: '/learn-vuex2',

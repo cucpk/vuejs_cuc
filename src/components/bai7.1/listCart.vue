@@ -1,6 +1,7 @@
 <template>
-    <div id="table">
-            <table>
+    <div id="table" style="display:flex;">
+            <div >
+                <table>
                 <tr>
                     <th style="width: 30px;">STT</th>
                     <th style="width: 370px;">Sản phẩm</th>
@@ -14,7 +15,7 @@
                     <td>
                         <div>
                             <img :src="product.image" alt="" v-if="product.image !== ''">
-                            <img src="https://images.samsung.com/is/image/samsung/p6pim/vn/2202/gallery/vn-galaxy-a53-5g-a536-sm-a536elbgxxv-531435476?$650_519_PNG$" alt="" v-else>
+                            <img src="product.image" alt="" v-else>
                             <div>{{ product.name }}</div>
                         </div>
                     </td>
@@ -37,17 +38,22 @@
                     </td>
                 </tr>
             </table>
+            </div>
+        <CartItem/>
         </div>
-
 </template>
 <script>
   import { mapState,mapMutations } from 'vuex'
+  import CartItem from './CartItem.vue'
     export default {
-        name: "BaiTap_2",
+        name: "listCart",
         computed: {
             ...mapState([
                 'products'
             ])
+        },
+        components: {
+            CartItem
         },
         methods:{
              ...mapMutations([
