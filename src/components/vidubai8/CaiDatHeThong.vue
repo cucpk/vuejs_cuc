@@ -2,9 +2,7 @@
   <div>
     <BaseLayout>
         <template #header>
-            <b>{{Title}}</b>
-            <button @click="chaneTitle()" style="margin-left:30px;">Nhấn chọn thay đổi</button>
-            
+            <b>Cài đặt hệ thống</b>
         </template>
         <template #content>
              <template>
@@ -37,30 +35,32 @@
   </div>
 </template>
 <script>
-// import { title } from 'process'
-import { mapState,mapMutations } from 'vuex'
-import BaseLayout from '../views/BaseLayout.vue'
+import BaseLayout from './BaseLayout.vue';
     export default {
-    name: "homeTQ",
-    computed: {
-        ...mapState(
-            'home',['tableData','Title']
-        ),
-    },
-    components: {
-      BaseLayout,
-    },
-    methods:{
-             ...mapMutations('home',[
-                'destroy',
-                'editTitle'
-            ]),
-            chaneTitle(){
-              this.editTitle()
-            }
-            }
-    }
-
+    name: "ProductPage",
+    components: { BaseLayout },
+     data() {
+        return {
+          tableData: [{
+            date: '2016-05-03',
+            name: 'Tom',
+            address: 'No. 189, Grove St, Los Angeles'
+          }, {
+            date: '2016-05-02',
+            name: 'Tom',
+            address: 'No. 189, Grove St, Los Angeles'
+          }, {
+            date: '2016-05-04',
+            name: 'Tom',
+            address: 'No. 189, Grove St, Los Angeles'
+          }, {
+            date: '2016-05-01',
+            name: 'Tom',
+            address: 'No. 189, Grove St, Los Angeles'
+          }]
+        }
+      }
+};
 </script>
 <style>
     .el-pagination{

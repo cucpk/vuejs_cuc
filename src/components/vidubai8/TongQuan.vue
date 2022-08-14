@@ -2,9 +2,7 @@
   <div>
     <BaseLayout>
         <template #header>
-            <b>{{Title}}</b>
-            <button @click="chaneTitle()" style="margin-left:30px;">Nhấn chọn thay đổi</button>
-            
+            <b>Tổng Quan</b>
         </template>
         <template #content>
              <template>
@@ -37,27 +35,19 @@
   </div>
 </template>
 <script>
-// import { title } from 'process'
 import { mapState,mapMutations } from 'vuex'
-import BaseLayout from '../views/BaseLayout.vue'
     export default {
     name: "homeTQ",
     computed: {
         ...mapState(
-            'home',['tableData','Title']
+            'home',['dataTable']
         ),
     },
-    components: {
-      BaseLayout,
-    },
     methods:{
-             ...mapMutations('home',[
+             ...mapMutations([
                 'destroy',
-                'editTitle'
+                'updateMoney'
             ]),
-            chaneTitle(){
-              this.editTitle()
-            }
             }
     }
 

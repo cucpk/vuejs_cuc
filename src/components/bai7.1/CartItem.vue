@@ -62,7 +62,9 @@ import { mapState,mapMutations } from 'vuex'
             updateTotalMoney(value){
                 this.updateMoney(value);
             }
-        }   
+            
+        }  
+         
     }
 </script>
 <style lang="scss" scoped>

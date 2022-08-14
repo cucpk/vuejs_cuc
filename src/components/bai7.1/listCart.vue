@@ -62,6 +62,7 @@
             addToCart(value){
                 this.addproduct(value);
             },
+            
         }     
     }
 </script>

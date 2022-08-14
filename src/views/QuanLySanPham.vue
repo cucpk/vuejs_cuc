@@ -35,32 +35,26 @@
   </div>
 </template>
 <script>
-import BaseLayout from './BaseLayout.vue';
+import { mapState,mapMutations } from 'vuex'
+import BaseLayout from '../views/BaseLayout.vue'
     export default {
-    name: "ProductPage",
-    components: { BaseLayout },
-     data() {
-        return {
-          tableData: [{
-            date: '2016-05-03',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles'
-          }, {
-            date: '2016-05-02',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles'
-          }, {
-            date: '2016-05-04',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles'
-          }, {
-            date: '2016-05-01',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles'
-          }]
-        }
-      }
-};
+    name: "homeTQ",
+    computed: {
+        ...mapState(
+            'home',['tableData']
+        ),
+    },
+    components: {
+      BaseLayout,
+    },
+    methods:{
+             ...mapMutations([
+                'destroy',
+                'updateMoney'
+            ]),
+            }
+    }
+
 </script>
 <style>
     .el-pagination{

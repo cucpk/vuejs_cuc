@@ -6,9 +6,29 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/loadsh',
+    name: 'loadsh',
+    component: () => import('../views/loadshVD.vue')
+  },
+  {
+    path: '/products',
+    name: 'listProducts',
+    component: () => import('../views/listProducts.vue')
+  },
+  {
     path: '/learn-vuex',
     name: 'LearnVuex',
     component: () => import('../components/LearnVuex.vue')
+  },
+  {
+    path: '/vidu',
+    name: 'vidubai8',
+    component: () => import('../components/vidubai8/baseLayout.vue')
+  },
+  {
+    path: '/vidu1',
+    name: 'vidubai8',
+    component: () => import('../components/vidubai8/TongQuan.vue')
   },
   {
     path: '/Bai7-1',
