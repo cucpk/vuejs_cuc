@@ -1,28 +1,47 @@
 import axios from 'axios'
-// import { method } from 'lodash';
+
 const baseUrl = 'http://vuecourse.zent.edu.vn';
 
 export const apiAxios = axios.create({
-    baseURL:`${baseUrl}/api`,
-    headers: {
-      post: {
-        'Content-Type': 'application/json'
-      }
+  baseURL:`${baseUrl}/api`,
+  headers: {
+    post: {
+      'Content-Type': 'application/json'
     }
-  })
+  }
+})
 
-  export default{
-    getlistProducts(){
+export default {
+    getListProducts() 
+    {
         return apiAxios({
             method: 'get',
-            url:'/products'
+            url: '/products',
         })
     },
-    // saveProducts(){
-    //     return apiAxios({
-    //         method: 'post',
-    //         url:'/products'
-    //     })
-    // },
-  }
+
+    createProduct(data) 
+    {
+      return apiAxios({
+        method: 'post',
+        url: '/products',
+        data: data
+      })
+    },
+    updateProduct(id,data)
+    {
+      return apiAxios({
+        method: 'post',
+        url:'/products/' + id,
+        data: data
+      })
+    },
+    deleteProduct(id)
+    {
+      return apiAxios({
+        method: 'delete',
+        url:'/products/' + id,
+      })
+    }
+}
 

@@ -1,26 +1,23 @@
 <template>
   <div>
-    <h1>Danh sách sản phẩm</h1>
-    <div style="width:25%; margin: 20px 0;">
-      <el-input
-        placeholder="Nhập tên để tìm kiếm"
+    <h3>DANH SÁCH CÁC SẢN PHẨM</h3>
+    <div style="width:15%;">
+      <el-input 
+        placeholder="Tìm kiếm sản phẩm"
         @clear="clearHandle()"
         @keydown.enter.native="handleSearch()"
           clearable
-        v-model="search">
+        v-model="search" >
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
     </div>
-    <div class="btn__create">
-      <el-button type="primary" plain @click="openDialogCreateProduct()">Thêm mới</el-button>
-    </div>
-   
+    <el-button type="primary" succes style="margin-left:50px;" @click="openDialogCreateProduct()">Thêm sản phẩm</el-button>
     <el-table
       :data="products"
       style="width: 100%">
       <el-table-column
         prop="id"
-        label="#"
+        label="id"
         width="180">
         <template slot-scope="product">
           {{product.row.id}}
@@ -52,43 +49,28 @@
       </el-table-column>
        <el-table-column
         prop="action"
-        label=" Hành động"
+        label=" Hoạt động"
         width="280">
         <template slot-scope="product">
-          <a class="btn btnRecharge el-button el-button--primary el-button--mini is-plain"
-              @click="openDialogEditProduct(product.row)"
-            >
-            <i class="el-icon-edit"></i>
+          <a @click="openDialogEditProduct(product.row)">
+            <el-button type="success" class="btn-b">Chỉnh sửa</el-button>
           </a>
-         <a class="btn btnRecharge el-button el-button--danger el-button--mini is-plain"
-              @click="handleDeleteProduct(product.row.id)"
-            >
-            <i class="el-icon-delete"></i>
+         <a @click="handleDeleteProduct(product.row.id)">
+            <el-button type="danger">Xóa sản phẩm</el-button>
           </a>
         </template>
         
       </el-table-column>
     </el-table>
-    <div class="paginationWarp">
-         <el-col :span="10">
-            <div class="textInfo">
-               <p>Số lượng kết quả: {{ page.from }} - {{ page.to }} của {{ page.total }} </p>
-            </div>
-         </el-col>
-
-         <el-col :span="14">
-            <el-pagination
-                  layout="prev, pager, next"
-                  :total="page.total"
-                  :page-size="page.pageSize"
-                  :current-page="page.currentPage"
-                  @current-change="handleCurrentChange()"
-              >
-              </el-pagination>
-         </el-col>
-      </div>
-    <el-dialog width="30%" top="5vh" v-loading="loading" title="Chỉnh sửa sản phẩm" :visible.sync="dialogEditProduct" class="modalUser">
+    <el-dialog width="100%" v-loading="loading" title="Chỉnh sửa sản phẩm" :visible.sync="dialogEditProduct" class="modalUser">
         <el-row>
+            <div class="inputWarp" >
+              <label>id</label>
+              <el-input v-model="id"></el-input>
+              <div class="error">
+                <span>{{errorid}}</span>
+              </div>
+            </div>
             <div class="inputWarp" >
               <label>Tên sản phẩm </label>
               <el-input v-model="name"></el-input>
@@ -112,12 +94,11 @@
             </div>
           </el-row>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="closeDialogEditProduct()">Đóng</el-button>
         <el-button type="primary" @click="handleEditProduct()">Cập nhật</el-button>
       </span>
     </el-dialog>
 
-    <el-dialog width="30%" top="5vh" v-loading="loading" title="Tạo sản phẩm" :visible.sync="dialogCreateProduct" class="modalUser">
+    <el-dialog width="100%" v-loading="loading" title="Thêm mới sản phẩm" :visible.sync="dialogCreateProduct" class="modalUser">
         <el-row>
             <div class="inputWarp" >
               <label>Tên sản phẩm </label>
@@ -142,8 +123,7 @@
             </div>
           </el-row>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="closeDialogCreateProduct()">Đóng</el-button>
-        <el-button type="primary" @click="handleCreateProduct()">Tạo mới</el-button>
+        <el-button type="primary" @click="handleCreateProduct()">Tạo mới sản phẩm</el-button>
       </span>
     </el-dialog>
   </div>
@@ -184,15 +164,11 @@ import api from '../api'
           let error = false
           if(this.name.length === 0){
             error = true
-            this.errorName = 'Không được để trống tên sản phẩm'
+            this.errorName = 'Vui lòng điền tên sản phẩm'
           }
           if(this.price.length === 0){
             error = true
-            this.errorPrice = 'Giá sản phẩm không được để trống'
-          }
-          if(isNaN(this.price)){
-            error = true
-            this.errorPrice = 'Giá sản phẩm phải là số'
+            this.errorPrice = 'Vui lòng điền giá sản phẩm'
           }
           return !error
         },
@@ -212,16 +188,6 @@ import api from '../api'
         },
         openDialogCreateProduct(){
           this.dialogCreateProduct = true
-          this.resetForm()
-          this.resetError()
-        },
-        closeDialogCreateProduct(){
-          this.dialogCreateProduct = false
-          this.resetForm()
-          this.resetError()
-        },
-        closeDialogEditProduct(){
-          this.dialogEditProduct = false
           this.resetForm()
           this.resetError()
         },
@@ -269,17 +235,17 @@ import api from '../api'
           
         },
         handleDeleteProduct(id){
-          this.$confirm('Dữ liệu không thể phục hồi, Bạn có muốn biếp tục?', 'Cảnh báo', {
+          this.$confirm('Bạn muốn xóa sản phẩm?', {
           confirmButtonText: 'Xóa',
           cancelButtonText: 'Đóng',
-          confirmButtonClass: 'deleteConfirm',
+        //   confirmButtonClass: 'deleteConfirm',
           type: 'warning'
             }).then(()=>{
               api.deleteProduct(id).then(() => {
                   this.getProduct(),
                   this.$message({
-                    type: 'success',
-                    message: 'Xoá sản phẩm thành công',
+                    type: 'danger',
+                    message: 'Đã xóa sản phẩm!',
                   })
                 })
             })
@@ -300,23 +266,9 @@ import api from '../api'
               this.resetError(),
               this.$message({
                 type: 'success',
-                message: 'Cập nhật sản phẩm thành công',
+                message: 'Sản phẩm được cập nhật thành công!',
               })
-            }).catch((error) => {
-              let errors = _.get(error, 'response.data.error', {})
-              if (Object.keys(errors).length > 0) {
-                this.errorName = _.get(errors, 'name[0]', '')
-                this.errorPrice = _.get(errors, 'price[0]', '')
-                this.errorDescription = _.get(errors, 'description[0]', '')
-              } else{
-                if (Object.keys(errors).length === 0) {
-                  this.$message.error({
-                    type: 'error',
-                    message: "Có lỗi xảy ra, vui lòng thử lại sau."
-                  })
-                }
-              }
-            })
+              })
           }
         },
         handleSearch(){
@@ -346,25 +298,25 @@ import api from '../api'
             q: this.search.length > 0 ? this.search : null,
             page: val
           }
-         
           this.getProduct(payload)
         }
       }
     }
 </script>
 <style lang="scss">
-.paginationWarp{
-  text-align: left;
+            
+.btn-b{
+    margin-right: 10px;
 }
-.btn__create{
+.paginationWarp{
   text-align: left;
 }
 .inputWarp{
   margin-bottom: 10px;
   label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #3f6079;;
+    font-size: 14px;
+    font-weight: 700;
+    color: pink;
     display: block;
     margin-bottom: 5px;
     text-align: left;
@@ -372,6 +324,6 @@ import api from '../api'
 }
 .error{
   text-align: left;
-  color: red;
+  color: rgb(254, 20, 20);
 }
 </style>
